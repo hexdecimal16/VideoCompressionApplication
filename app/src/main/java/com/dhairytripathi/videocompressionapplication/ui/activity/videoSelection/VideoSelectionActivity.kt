@@ -18,6 +18,7 @@ import com.dhairytripathi.videocompressionapplication.databinding.ActivityVideoS
 import com.dhairytripathi.videocompressionapplication.liveData.VideoSelectionAction
 import com.dhairytripathi.videocompressionapplication.ui.activity.videoCompression.VideoCompressionActivity
 import com.dhairytripathi.videocompressionapplication.utils.PermissionUtil
+import com.dhairytripathi.videocompressionapplication.utils.ToastUtils
 import com.dhairytripathi.videocompressionapplication.utils.UiUtil
 import kotlinx.android.synthetic.main.activity_video_selection.*
 
@@ -59,11 +60,7 @@ class VideoSelectionActivity: AppCompatActivity(),ClickListener {
     }
 
     private fun showPermissionNotGrantedToast() {
-        Toast.makeText(
-            this,
-            "Please provide appropriate permissions to continue!",
-            Toast.LENGTH_LONG
-        ).show()
+        ToastUtils.showToast("We need permission to continue.", this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -98,7 +95,7 @@ class VideoSelectionActivity: AppCompatActivity(),ClickListener {
 
             when (it) {
                 VideoSelectionAction.SELECT_VIDEO_BUTTON_CLICKED -> fetchAllVideosFromStorage()
-                null -> UiUtil.showUnexpectedErrorToast()
+                null -> UiUtil.showErrorToast()
             }
         })
     }

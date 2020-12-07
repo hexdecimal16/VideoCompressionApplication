@@ -19,10 +19,10 @@ import kotlinx.android.synthetic.main.activity_video_compression.*
 import nl.bravobit.ffmpeg.FFmpeg
 
 class VideoCompressionActivity : AppCompatActivity() {
-    val viewModel: VideoCompressionViewModel =
+    private val viewModel: VideoCompressionViewModel =
         ViewModelProvider.NewInstanceFactory().create(VideoCompressionViewModel::class.java)
 
-    lateinit var binding: ActivityVideoCompressionBinding
+    private lateinit var binding: ActivityVideoCompressionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,10 +59,7 @@ class VideoCompressionActivity : AppCompatActivity() {
     }
 
     private fun displayCompressionInProgress() {
-        UiUtil.displayProgress(
-            this,
-            VideoCompressionAction.DISPLAY_PROGRESS.message
-        )
+        UiUtil.displayProgress(this)
     }
 
     private fun onCompressionSuccess() {

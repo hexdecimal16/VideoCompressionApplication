@@ -24,14 +24,12 @@ class VideoCompressionViewModel : ViewModel() {
     lateinit var videoUri: Uri
     lateinit var filePath: String
     val mBitrate = ObservableField("5000") // Standard bitrate for 720p video
-
-    //  I have currently made this as true, but later will have to make it false
     val isKbps = ObservableBoolean(true)    // there are currently only 2 -> KBPS and MBPS
 
     lateinit var ffmpeg: FFmpeg
 
-    val mOutputFileLocation =
-            "${VideoCompressionApplication.appContext.externalMediaDirs[0].absolutePath}/CompressedVideos"
+    private val mOutputFileLocation =
+            "${VideoCompressionApplication.appContext.getExternalFilesDir(null)?.absolutePath}/CompressedVideos"
 
     fun extractIntentExtras(data: Intent) {
         filePath = data.getStringExtra(SELECTED_VIDEO_FILE_PATH)!!
